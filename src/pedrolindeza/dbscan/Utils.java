@@ -96,10 +96,11 @@ public class Utils {
 		BufferedReader br = new BufferedReader (new FileReader (txtPath));
 		
 		String str = "";
-		
-		while ((str = br.readLine ())!= null && str !="")
+		int count = 0;
+		while ( (str = br.readLine () ) != null && str !=""){
+			System.out.println(str);
 			lst.add (new Point (str));
-		
+		}	
 		br.close ();
 		return lst;
 	}

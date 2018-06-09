@@ -17,14 +17,14 @@ public class DBSCAN {
 		}
 		
 		try {
-			dataSet = Utils.getPointsList("assets/" + args[0]);
+			dataSet = Utils.getPointsList("datasets/" + args[0]);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		
 		System.out.println(dataSet.size());
-	
+		
 	}
 	
 	/**
