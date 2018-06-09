@@ -59,7 +59,9 @@ public class Point {
 		
 		String[] p = str.split (",");
 		
-		this.id = p[0];
+		setID(p[0]);
+		setCore(false);
+		setClassed(false);
 		
 		this.values = new double[p.length-1];
 		

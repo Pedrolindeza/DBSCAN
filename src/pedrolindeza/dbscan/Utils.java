@@ -20,6 +20,7 @@ public class Utils {
 		
 		double sum = 0;
 		for(int i = 0; i < sizeP; i++){ 
+			
 			double aux = p.getPointValue(i)-q.getPointValue(i);
 			sum += aux * aux;
 		}
@@ -37,18 +38,21 @@ public class Utils {
 	 * @ Param minp density threshold
 	 * @ Return a temporary storage point visited
 	 */
-	public static List<Point> isCorePoint(List<Point> lst, Point p, int e, int minp){
+	public static List<Point> findCore(List<Point> lst, Point p, double radius, double minp){
+		
 		int count = 0;
-		List<Point> tmpLst = new ArrayList<Point> ();
+		List<Point> tmpLst = new ArrayList<Point>();
+		
 		for (Iterator<Point> it = lst.iterator(); it.hasNext();){
 			Point q = it.next();
-			if (getDistance (p, q) <= e){
-				++count;
-				if (! tmpLst.contains(q)){
+			if (getDistance (p, q) <= radius){
+				count++;
+				if (!tmpLst.contains(q)){
 					tmpLst.add(q);
 				}
 			}
 		}
+		
 		if (count >= minp){
 			p.setCore(true);
 			setListClassed(tmpLst);
@@ -66,7 +70,8 @@ public class Utils {
 		}
 	}
 	
-	public static boolean mergeList(List<Point> a, List<Point> b){
+	public static boolean mergeCores(List<Point> a, List<Point> b){
+		
 		boolean merge = false;
 		
 		for (int index = 0; index < b.size(); index++){
@@ -83,8 +88,6 @@ public class Utils {
 			}
 		}
 		
-		else a.addAll(b);
-		
 		return merge;
 	}
 
@@ -96,9 +99,8 @@ public class Utils {
 		BufferedReader br = new BufferedReader (new FileReader (txtPath));
 		
 		String str = "";
-		int count = 0;
+	
 		while ( (str = br.readLine () ) != null && str !=""){
-			System.out.println(str);
 			lst.add (new Point (str));
 		}	
 		br.close ();
