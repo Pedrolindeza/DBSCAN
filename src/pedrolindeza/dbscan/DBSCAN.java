@@ -66,22 +66,27 @@ public class DBSCAN {
 		System.out.println("\nCore Points:" + cores.size());
 		
 		//join cores
+		
 		while(cores.size() > 0){
 			
 			List<Point> coreA = cores.get(0);
+			
+			boolean change = false;
+			int pos=1;
 			int size = cores.size();
 			
-			int aux=1;
 			for(int i = 1 ; i < size; i++){
 				
-				List<Point> coreB = cores.get(aux);
-				if (coreA == coreB) continue;
-				if (Utils.mergeCores(coreA,coreB)) cores.remove(coreB);
-				else aux++;
+				List<Point> coreB = cores.get(pos);
+				if (coreA == coreB) continue; // this never happens, but still
+				if (Utils.mergeCores(coreA,coreB)) { change = true; cores.remove(coreB);}
+				else pos++;
 				
 			}
-			clusters.add(coreA);
-			cores.remove(coreA);
+			if (change == false){
+				clusters.add(coreA);
+				cores.remove(coreA);
+			}
 		}
 		
 	}
