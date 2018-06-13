@@ -41,8 +41,10 @@ public class DBSCAN {
 				System.out.print(" " + p.getID());
 			
 		}
-		System.out.println("\nNoise points");
-		for( Point a : dataSet) if (a.isClassed() == false) System.out.print(" "+ a.getID());
+		System.out.println("\n\nNoise points");
+		int count = 0;
+		for( Point a : dataSet) if (a.isClassed() == false){count++; System.out.print(" "+ a.getID());}
+		if(count == 0) System.out.print("None");
 		System.out.println("\n");
 	}
 	
@@ -72,22 +74,21 @@ public class DBSCAN {
 			
 			List<Point> coreA = cores.get(0);
 			
-			boolean change = false;
-			int pos=1;
-			int size = cores.size();
+			int i = 1;
 			
-			for(int i = 1 ; i < size; i++){
+			while(i < cores.size() ){
 				
-				List<Point> coreB = cores.get(pos);
-				if (coreA == coreB) continue; // this never happens, but still
-				if (Utils.mergeCores(coreA,coreB)) { change = true; cores.remove(coreB);}
-				else pos++;
+				List<Point> coreB = cores.get(i);
+				 
+				if (Utils.mergeCores(coreA,coreB)) {
+					cores.remove(i);
+					i=1;
+				}
+				else{ i++; }
 				
 			}
-			if (change == false){
-				clusters.add(coreA);
-				cores.remove(coreA);
-			}
+			cores.remove(0);
+			clusters.add(coreA);
 		}
 		
 	}

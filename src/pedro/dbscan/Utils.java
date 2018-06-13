@@ -82,8 +82,8 @@ public class Utils {
 		}
 		if (merge){
 			for (int index = 0; index < b.size(); index++){
-				if (!a.contains (b.get (index))) {
-					a.add(b.get (index));
+				if (!a.contains (b.get(index))) {
+					a.add(b.get(index));
 				}
 			}
 		}
