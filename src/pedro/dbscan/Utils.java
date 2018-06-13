@@ -1,4 +1,4 @@
-package pedrolindeza.dbscan;
+package pedro.dbscan;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

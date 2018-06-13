@@ -1,4 +1,4 @@
-package pedrolindeza.dbscan;
+package pedro.dbscan;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -15,6 +15,7 @@ public class DBSCAN {
 	public static void main(String[] args){
 		
 		if(args.length != 3){
+			System.out.println("\nMissing Arguments!\n");
 			return;
 		}
 		

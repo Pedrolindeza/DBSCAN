@@ -1,5 +1,4 @@
-package pedrolindeza.dbscan;
-
+package pedro.dbscan;
 
 public class Point {
 	private String id;
