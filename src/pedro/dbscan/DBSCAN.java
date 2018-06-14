@@ -65,7 +65,7 @@ public class DBSCAN {
 		for( Point a : dataSet) 
 			if (a.isClassed() == false){
 				count++; 
-				System.out.print(" "+ a.getID() + " ");
+				System.out.print(a.getID() + " ");
 				for (double e: a.getPointValues()){
 					System.out.print(e + " ");
 				}
@@ -91,8 +91,6 @@ public class DBSCAN {
 			}
 	
 		}
-		
-		//System.out.println("\nCore Points:" + cores.size());
 		
 		//join cores
 		
