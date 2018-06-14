@@ -34,23 +34,33 @@ public class DBSCAN {
 	}
 	
 	private static void display(){
+		
+		System.out.println( "Clusters " + clusters.size());
+		
+		System.out.println( "Attributes " + dataSet.get(0).getPointSize());
+		
+		System.out.println( "Points " + dataSet.size() );
+		
 		for(List<Point> cluster : clusters){
-			System.out.println("\n____________________________________");
-			System.out.println("\tCluster " + (clusters.indexOf(cluster)+1) + " contains ID's\n");
+			
+			System.out.println();
 			
 			for(Point p : cluster){
-				System.out.print(" " + p.getID()+" ");
+				
+				System.out.print( (clusters.indexOf(cluster)+1) + " " + p.getID() + " ");
+				
 				for (double e: p.getPointValues()){
 					System.out.print(e + " ");
 				}
+				
 				System.out.println();
 			}
 					
 				
 			
 		}
-		System.out.println("\n____________________________________");
-		System.out.println("\tNoise points\n");
+		
+		System.out.println("\nNoise points");
 		int count = 0;
 		for( Point a : dataSet) 
 			if (a.isClassed() == false){
@@ -62,7 +72,6 @@ public class DBSCAN {
 				System.out.println();
 			}
 		if(count == 0) System.out.print("None");
-		System.out.println("\n");
 	}
 	
 	
@@ -83,7 +92,7 @@ public class DBSCAN {
 	
 		}
 		
-		System.out.println("\nCore Points:" + cores.size());
+		//System.out.println("\nCore Points:" + cores.size());
 		
 		//join cores
 		
