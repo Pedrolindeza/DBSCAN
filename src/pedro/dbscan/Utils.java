@@ -10,19 +10,22 @@ import java.util.List;
 public class Utils {
 	/**
 	* Test the distance between the two points
+	 * @throws IOException 
 	* @ Param p point
 	* @ Param q point
 	* @ Return returns the distance between two points
 	*/
 	
-	private static double distance(Point p, Point q) {
+	private static double distance(Point p, Point q){
 		if(DBSCAN.getDISTANCE() == 1)
 			return euclideanDistance(p,q);
 		if(DBSCAN.getDISTANCE() == 2)
 			return manhattanDistance(p,q);
-		if(DBSCAN.getDISTANCE() == 3)
+		if(DBSCAN.getDISTANCE() == 3 & DBSCAN.getMinkowskiM() != 0)
 			return minkowskiDistance(p,q,DBSCAN.getMinkowskiM());
 		
+		System.out.println("WRONG METRIC PARAMETERS!");
+		System.exit(0);
 		return 0;
 	}
 
