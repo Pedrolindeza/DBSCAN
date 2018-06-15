@@ -17,7 +17,7 @@ public class Utils {
 	
 	private static double distance(Point p, Point q) {
 		if(DBSCAN.getDISTANCE() == 1)
-			return eucledianDistance(p,q);
+			return euclideanDistance(p,q);
 		if(DBSCAN.getDISTANCE() == 2)
 			return manhattanDistance(p,q);
 		if(DBSCAN.getDISTANCE() == 3)
@@ -27,7 +27,7 @@ public class Utils {
 	}
 
 	
-	public static double eucledianDistance (Point p, Point q){
+	public static double euclideanDistance (Point p, Point q){
 		
 		int sizeP = p.getPointSize();
 		
