@@ -21,7 +21,7 @@ public class Utils {
 		if(DBSCAN.getDISTANCE() == 2)
 			return manhattanDistance(p,q);
 		if(DBSCAN.getDISTANCE() == 3)
-			return minkonwskiDistance(p,q,DBSCAN.getMinkowskiM());
+			return minkowskiDistance(p,q,DBSCAN.getMinkowskiM());
 		
 		return 0;
 	}
@@ -57,7 +57,7 @@ public class Utils {
 		return sum;
 	}
 	
-	public static double minkonwskiDistance (Point p, Point q, double exp){
+	public static double minkowskiDistance (Point p, Point q, double exp){
 		
 		int sizeP = p.getPointSize();
 		

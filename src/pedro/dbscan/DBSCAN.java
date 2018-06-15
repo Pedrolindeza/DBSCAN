@@ -44,6 +44,7 @@ public class DBSCAN {
 		radius = Double.parseDouble(args[1]);
 		minp = Double.parseDouble(args[2]);
 		
+		startTime = System.currentTimeMillis();
 		applyDBSCAN();
 		display();
 		
