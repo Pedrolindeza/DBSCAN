@@ -14,7 +14,20 @@ public class Utils {
 	* @ Param q point
 	* @ Return returns the distance between two points
 	*/
-	public static double getDistance (Point p, Point q){
+	
+	private static double distance(Point p, Point q) {
+		if(DBSCAN.getDISTANCE() == 1)
+			return eucledianDistance(p,q);
+		if(DBSCAN.getDISTANCE() == 2)
+			return manhattanDistance(p,q);
+		if(DBSCAN.getDISTANCE() == 3)
+			return minkonwskiDistance(p,q,DBSCAN.getMinkowskiM());
+		
+		return 0;
+	}
+
+	
+	public static double eucledianDistance (Point p, Point q){
 		
 		int sizeP = p.getPointSize();
 		
@@ -26,6 +39,36 @@ public class Utils {
 		}
 		
 		double distance = Math.sqrt (sum);
+	
+		return distance;
+	}
+	
+	public static double manhattanDistance (Point p, Point q){
+		
+		int sizeP = p.getPointSize();
+		
+		double sum = 0;
+		for(int i = 0; i < sizeP; i++){ 
+			
+			double aux = p.getPointValue(i)-q.getPointValue(i);
+			sum += Math.abs(aux);
+		}
+	
+		return sum;
+	}
+	
+	public static double minkonwskiDistance (Point p, Point q, double exp){
+		
+		int sizeP = p.getPointSize();
+		
+		double sum = 0;
+		for(int i = 0; i < sizeP; i++){ 
+			
+			double aux = p.getPointValue(i)-q.getPointValue(i);
+			sum += Math.pow(aux, exp);
+		}
+		
+		double distance = Math.pow(sum, (1/exp));
 	
 		return distance;
 	}
@@ -45,7 +88,7 @@ public class Utils {
 		
 		for (Iterator<Point> it = lst.iterator(); it.hasNext();){
 			Point q = it.next();
-			if (getDistance (p, q) <= radius){
+			if (distance(p, q) <= radius){
 				count++;
 				if (!tmpLst.contains(q)){
 					tmpLst.add(q);

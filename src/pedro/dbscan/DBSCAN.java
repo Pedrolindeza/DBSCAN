@@ -7,6 +7,8 @@ import java.util.List;
 
 public class DBSCAN {
 	
+	private static int DISTANCE;
+	private static double minkowskiM;
 	private static double radius;
 	private static double minp;
 	private static List<Point> dataSet = new ArrayList<Point>();
@@ -14,23 +16,43 @@ public class DBSCAN {
 	
 	public static void main(String[] args){
 		
-		if(args.length != 3){
-			System.out.println("\nMissing Arguments!\n");
-			return;
+		//choose the distance metric
+		if(args.length == 3){
+			setDISTANCE(1);
+		}
+		if(args.length == 4){
+			setDISTANCE(Integer.parseInt(args[3]));
+		}
+		if(args.length == 5){
+			setDISTANCE(Integer.parseInt(args[3]));
+			setMinkowskiM(Double.parseDouble(args[4]));
 		}
 		
+		radius = Double.parseDouble(args[1]);
+		minp = Double.parseDouble(args[2]);	
+			
+			
+		long startTime = System.currentTimeMillis();
 		try {
 			dataSet = Utils.getPointsList("datasets/" + args[0]);
 		} catch (IOException e){
 			e.printStackTrace();
 		}
+		long readTime = System.currentTimeMillis() - startTime;
+		
 		
 		radius = Double.parseDouble(args[1]);
 		minp = Double.parseDouble(args[2]);
 		
 		applyDBSCAN();
 		display();
-
+		
+		long execTime = System.currentTimeMillis() - startTime;
+		long totalTime = readTime + execTime;
+		
+		System.out.println( "\n\nRead time (ms) " + readTime);
+		System.out.println( "DBSCAN time (ms) " + execTime);
+		System.out.println( "Total time (ms) " + totalTime + "\n");
 	}
 	
 	private static void display(){
@@ -115,6 +137,22 @@ public class DBSCAN {
 			clusters.add(coreA);
 		}
 		
+	}
+
+	public static int getDISTANCE() {
+		return DISTANCE;
+	}
+
+	public static void setDISTANCE(int dISTANCE) {
+		DISTANCE = dISTANCE;
+	}
+
+	public static double getMinkowskiM() {
+		return minkowskiM;
+	}
+
+	public static void setMinkowskiM(double d) {
+		DBSCAN.minkowskiM = d;
 	}
 
 }
